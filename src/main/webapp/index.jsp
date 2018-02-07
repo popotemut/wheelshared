@@ -1,7 +1,7 @@
 <%-- 
-    Document   : newjsp
-    Created on : Dec 10, 2017, 2:59:31 PM
-    Author     : maewaranya
+    Document   : index2
+    Created on : Feb 7, 2018, 12:35:50 PM
+    Author     : OWNER
 --%>
 
 <%@page import="model.Vocabulary"%>

@@ -1,10 +1,7 @@
-<<<<<<< HEAD
+
 <?xml version="1.0" encoding="UTF-8"?>
 <project-shared-configuration>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-shared-configuration>
->>>>>>> 6df1fb9dbda1b1eb76ceb5008dfe203890eb71ee
+
     <!--
 This file contains additional configuration written by modules in the NetBeans IDE.
 The configuration is intended to be shared among all the users of project and
@@ -13,10 +10,7 @@ Without this configuration present, some functionality in the IDE may be limited
 <<<<<<< HEAD
 -->
     <properties xmlns="http://www.netbeans.org/ns/maven-properties-data/1">
-=======
--->
-    <properties xmlns="http://www.netbeans.org/ns/maven-properties-data/1">
->>>>>>> 6df1fb9dbda1b1eb76ceb5008dfe203890eb71ee
+
         <!--
 Properties that influence various parts of the IDE, especially code formatting and the like. 
 You can copy and paste the single properties, into the pom.xml file and the IDE will pick them up.
@@ -34,8 +28,7 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-css-prep.sass_2e_mappings>/scss:/css</org-netbeans-modules-css-prep.sass_2e_mappings>
     </properties>
 </project-shared-configuration>
-=======
--->
+
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_j2eeVersion>1.7-web</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_j2eeVersion>
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>gfv3ee6</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
         <org-netbeans-modules-css-prep.less_2e_mappings>/less:/css</org-netbeans-modules-css-prep.less_2e_mappings>
