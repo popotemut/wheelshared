@@ -18,8 +18,11 @@
         <h1><%
             Vocabulary v = new Vocabulary();
             String s = v.getVocab(v.connectionBuilder());
+<<<<<<< HEAD
             
 //            String s = v.getVocab();
+=======
+>>>>>>> 6df1fb9dbda1b1eb76ceb5008dfe203890eb71ee
             out.println(s);
             %></h1>
     </body>

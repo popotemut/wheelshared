@@ -18,8 +18,6 @@
         <h1><%
             Vocabulary v = new Vocabulary();
             String s = v.getVocab(v.connectionBuilder());
-            
-//            String s = v.getVocab();
             out.println(s);
             %></h1>
     </body>
