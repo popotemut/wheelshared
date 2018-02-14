@@ -1,5 +1,7 @@
 package model;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 
 import java.sql.SQLException;
@@ -24,6 +26,7 @@ public class Vocabulary {
     
     
     public Connection connectionBuilder() throws SQLException, ClassNotFoundException{
+        
         Properties p = new Properties();
         p.setProperty("URL", "jdbc:mysql://wheelshared.cb93cu4k2yln.us-west-2.rds.amazonaws.com:3306/wheelshared");
         p.setProperty("USERNAME","adminwheelshared");
