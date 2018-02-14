@@ -25,7 +25,8 @@ public class Vocabulary {
     
     public Connection connectionBuilder() throws SQLException, ClassNotFoundException{
         Properties p = new Properties();
-        p.setProperty("URL", "jdbc:mysql://wheelshared.cb93cu4k2yln.us-west-2.rds.amazonaws.com:3306/wheelshared");
+        //wheelshared.cb93cu4k2yln.us-west-2.rds.amazonaws.com
+        p.setProperty("URL", "jdbc:mysql://wheelsharedproject.cb93cu4k2yln.us-west-2.rds.amazonaws.com:3307/wheelshareddatabase");
         p.setProperty("USERNAME","adminwheelshared");
         p.setProperty("PASSWORD","letsgoinside");
         
@@ -37,27 +38,29 @@ public class Vocabulary {
         // the mysql url
 
         // get the mysql database connection
-        connection = DriverManager.getConnection(p.getProperty("URL")+"?user="+p.getProperty("USERNAME")+"&password="+p.getProperty("PASSWORD"));
+        connection = DriverManager.getConnection(p.getProperty("URL")+"?user="+p.getProperty("USERNAME")+"&password="+p.getProperty("PASSWORD")+ "&useUnicode=true&characterEncoding=UTF-8");
         
         // now do whatever you want to do with the connection
         // ...
         return connection;
     }
     
-    public String getVocab(Connection con) throws SQLException{
-//    public String getVocab() throws SQLException{
-                Statement statement = con.createStatement();
-                System.out.println("after con.createStatement()");
-        // Result set get the result of the SQL query
-        ResultSet resultSet = statement.executeQuery("select greeting from wheelshared.greeting;");
-        String vocab = new String();
-        System.out.println("after statement.executeQuery");
-        int i=0;
-        while (resultSet.next()) {
-            vocab = resultSet.getString("greeting");
-            System.out.println("Vocaburary: " + vocab);
+    public String getVocab() throws SQLException, ClassNotFoundException{
+        String vocab;
+        try (//    public String getVocab() throws SQLException{
+                Connection con = this.connectionBuilder()) {
+            Statement statement = con.createStatement();
+            System.out.println("after con.createStatement()");
+            // Result set get the result of the SQL query
+            ResultSet resultSet = statement.executeQuery("select greeting from wheelshareddatabase.GREETING;");
+            vocab = new String();
+            System.out.println("after statement.executeQuery");
+            int i=0;
+            while (resultSet.next()) {
+                vocab = resultSet.getString("greeting");
+                System.out.println("Vocaburary: " + vocab);
+            }
         }
-        con.close();
         return vocab;
     }
     
