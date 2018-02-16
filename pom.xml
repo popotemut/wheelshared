@@ -12,8 +12,16 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <db.CLASSFORNAME>com.mysql.jdbc.Driver</db.CLASSFORNAME>
+        <db.CONNECTION>jdbc:mysql</db.CONNECTION>
+        <db.URL>wheelsharedproject.cb93cu4k2yln.us-west-2.rds.amazonaws.com</db.URL>
+        <db.PORT>3307</db.PORT>
+        <db.DB>wheelshareddatabase</db.DB>
+        <db.USERNAME>adminwheelshared</db.USERNAME>
+        <db.PASSWORD>letsgoinside</db.PASSWORD>
     </properties>
-    
+
+        
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -39,6 +47,24 @@
     </dependencies>
 
     <build>
+        
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -58,6 +84,24 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>**/*.jsp</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <filtering>false</filtering>
+                            <excludes>
+                                <exclude>**/*.jsp</exclude>
+                            </excludes>
+                        </resource>
+                    </webResources>
+                    
                 </configuration>
             </plugin>
             <plugin>

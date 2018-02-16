@@ -15,10 +15,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1><%
-            Vocabulary v = new Vocabulary();
-            String s = v.getVocab(v.connectionBuilder());
-            out.println(s);
-            %></h1>
+        <h1>${greeting}</h1>
+        CLASSFORNAME=${db.CLASSFORNAME}
+CONNECTION=${db.CONNECTION}
+URL=${db.URL}
+PORT=${db.PORT}
+DB=${db.DB}
+USERNAME=${db.USERNAME}
+PASSWORD=${db.PASSWORD}
     </body>
 </html>
