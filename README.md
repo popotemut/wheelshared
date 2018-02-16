@@ -21,6 +21,7 @@ Our Tools:
 14. Amazon CodeDeploy (Free For EC2)
 15. MySQL
 16. MySQL Workbench 6.3
+17. Ubuntu 16.04
 
 Testing Architecture Link:
 https://youtu.be/pklqfU5pp2g
@@ -45,45 +46,14 @@ download here: (http://www.oracle.com/…/downloa…/jdk8-downloads-2133151.html
 //////////////////////////////////////////////
 
 **************************************************************
-- Installing Apache Maven - Resource:https://maven.apache.org/install.html
+- Install Apache Tomcat 8 on Ubuntu 16.04 -
 **************************************************************
-//////////////////////////////////////////////
-Detailed steps are:
-//////////////////////////////////////////////
-1. Ensure JAVA_HOME environment variable is set and points to your JDK installation
+Please go inside to read this site:
+https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04
 
-2. Extract distribution archive in any directory
+**************************************************************
+- Setting resource for properties file -
+**************************************************************
+Please go inside to read this site:
+http://na5cent.blogspot.com/2013/06/config-maven-profile-environment-java.html
 
-3. unzip apache-maven-3.5.2-bin.zip
-or
-tar xzvf apache-maven-3.5.2-bin.tar.gz
-Alternatively use your preferred archive extraction tool.
-
-4. Add the bin directory of the created directory apache-maven-3.5.2 to the PATH environment variable
-
-5. Confirm with mvn -v in a new shell or cmd. The result should look similar to
-"
-Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T08:58:13+01:00) Maven home: /opt/apache-maven-3.5.2 Java version: 1.8.0_45, vendor: Oracle Corporation Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre Default locale: en_US, platform encoding: UTF-8 OS name: “mac os x”, version: “10.8.5”, arch: “x86_64”, family: “mac”
-"
-
-//////////////////////////////////////////////
-(Installing Apache Maven Tips) for Windows: 
-//////////////////////////////////////////////
-1. Check environment variable value e.g.
-
-echo %JAVA_HOME% C:\Program Files\Java\jdk1.7.0_51
-
-2. Adding to PATH: Add the unpacked distribution’s bin directory to your user PATH environment variable by opening up the system properties (WinKey + Pause), selecting the “Advanced” tab, and the “Environment Variables” button, then adding or selecting the PATH variable in the user variables with the value C:\Program Files\apache-maven-3.5.2\bin. The same dialog can be used to set JAVA_HOME to the location of your JDK, e.g. C:\Program Files\Java\jdk1.7.0_51
-
-3. Open a new command prompt (Winkey + R then type cmd) and run mvn -v to verify the installation.
-
-//////////////////////////////////////////////
-(Installing Apache Maven Tips) for Unix-based Operating System (Linux, Solaris and Mac OS X):
-//////////////////////////////////////////////
-1. Check environment variable value
-
-echo $JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-
-2. Adding to PATH
-
-export PATH=/opt/apache-maven-3.5.2/bin:$PATH
