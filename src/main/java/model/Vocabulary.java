@@ -35,78 +35,32 @@ public class Vocabulary {
         this.vocab = vocab;
     }
 
-    public String adaptToFileInputStreamPath(String path){
-        String newPath=null;
-        path+="\\";
-        int i=0;
-        if(path.indexOf("\\")>=0){
-            newPath=path.substring(0, path.indexOf("\\"))+"//";
-            System.out.println("New Path#"+ ++i +":"+newPath);
-            path=path.substring(path.indexOf("\\")+1, path.length());
-            System.out.println("Path:"+path);
+    public String adaptToFileInputStreamPath(String path) {
+        String newPath = null;
+        path += "\\";
+        int i = 0;
+        if (path.indexOf("\\") >= 0) {
+            newPath = path.substring(0, path.indexOf("\\")) + "//";
+            System.out.println("New Path#" + ++i + ":" + newPath);
+            path = path.substring(path.indexOf("\\") + 1, path.length());
+            System.out.println("Path:" + path);
         }
-    
-        while(path.indexOf("\\")>=0){
-            newPath=newPath+path.substring(0, path.indexOf("\\"))+"/";
-            System.out.println("New Path#"+ ++i +":"+newPath);
-            path=path.substring(path.indexOf("\\")+1, path.length());
-            System.out.println("Path:"+path);
+
+        while (path.indexOf("\\") >= 0) {
+            newPath = newPath + path.substring(0, path.indexOf("\\")) + "/";
+            System.out.println("New Path#" + ++i + ":" + newPath);
+            path = path.substring(path.indexOf("\\") + 1, path.length());
+            System.out.println("Path:" + path);
         }
-        
-        
-        return newPath.substring(0, newPath.length()-1);
-            
-        }
-    
-    
-    public Connection connectionBuilder() throws SQLException, ClassNotFoundException {
 
-        Properties p = new Properties();
-        InputStream input = null;
-        Connection connection = null;
+        return newPath.substring(0, newPath.length() - 1);
 
-        try {
-                
-            // load the properties file from config.properties
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            input = classLoader.getResourceAsStream("config.properties");
-            p.load(input);
-
-            // get the value from the properties
-            String url = p.getProperty("CONNECTION") + "://" + p.getProperty("URL") + ":" + p.getProperty("PORT") + "/" + p.getProperty("DB");
-            String username = p.getProperty("USERNAME");
-            String password = p.getProperty("PASSWORD");
-
-            //print it out
-            System.out.println(url + "?user=" + username + "&password=" + password + "&useUnicode=true&characterEncoding=UTF-8");
-
-            //Create connection variable
-            // the mysql driver string
-            Class.forName(p.getProperty("CLASSFORNAME"));
-
-            //test run after com.mysql.jdbc.Driver
-            System.out.println("test run after " + p.getProperty("CLASSFORNAME"));
-
-            // get the mysql database connection
-            connection = DriverManager.getConnection(url + "?user=" + username + "&password=" + password + "&useUnicode=true&characterEncoding=UTF-8");
-
-        } catch (IOException ex) {
-            System.out.println("IO Exception eiei1");
-            ex.printStackTrace();
-            return null;
-        } finally {
-//            if (input != null) {
-//                System.out.println("Before input close");
-//                input.close();
-//            }
-            return connection;
-        }
     }
 
     public String getHelloWorldVocab() throws SQLException, ClassNotFoundException {
         String vocab;
         //Create Connection Variable from connectionBuilder Method In try for check that can be access to DB
-        try (Connection con = this.connectionBuilder()) {
+        try (Connection con = ConnectionBuilder.connectionBuilder()) {
 
             //Use Connection Variable to insert DB into statement.
             System.out.println(con);
