@@ -17,7 +17,7 @@ import java.util.List;
  * @author OWNER
  */
 public class ReceiverPost {
-    
+
     String name;//เก็บเป็นสตริง
     int categoryId;//เก็บเป็น int
     String image;//เก็บเป็น link
@@ -401,12 +401,12 @@ public class ReceiverPost {
         System.out.println("test after statement.executeQuery");
 
         //Use While Loop to get result
-        int i=0;
+        int i = 0;
         while (resultSet.next()) {
             //get address column and keep it in address variable.
             listInt.add(resultSet.getInt("receiverPostId"));
             //Test Processing: test get address variable value
-            System.out.println("This value#"+i+" : " + listInt.get(i++));
+            System.out.println("This value#" + i + " : " + listInt.get(i++));
         }
         return listInt;
     }
@@ -416,7 +416,7 @@ public class ReceiverPost {
         ReceiverPost rcvp = null;//new ReceiverPost(topic, id, image, statement, id, id, id, address);
         Connection con = ConnectionBuilder.connectionBuilder();
         Statement s = con.createStatement();
-        ResultSet resultSet = s.executeQuery("select * from wheelshareddatabase.ReceiverPost where receiverPostId="+id+";");
+        ResultSet resultSet = s.executeQuery("select * from wheelshareddatabase.ReceiverPost where receiverPostId=" + id + ";");
 
         //Test processing position after statement.executeQuery
         System.out.println("test after statement.executeQuery");
@@ -434,5 +434,28 @@ public class ReceiverPost {
             System.out.println("ToString Receiver Post Id: " + rcvp);
         }
         return rcvp;
+    }
+
+    public List<Integer> MatchToDonator(int catId, int provinceId, int subDistrictId) throws SQLException, ClassNotFoundException {
+        List<Integer> listInt = null;
+        //SQL to query that Every ReceiverPostId order by lastest date
+        Connection con = ConnectionBuilder.connectionBuilder();
+        Statement s = con.createStatement();
+        ResultSet resultSet = s.executeQuery("select donatorPostId from wheelshareddatabase.DonatorPost when categoryId="+catId+" "
+                + "to provinceId="+provinceId+" or subDistrictId="+subDistrictId+" order by datetime ASC;");
+
+        //Test processing position after statement.executeQuery
+        System.out.println("test after statement.executeQuery");
+
+        //Use While Loop to get result
+        int i = 0;
+        while (resultSet.next()) {
+            //get address column and keep it in address variable.
+            listInt.add(resultSet.getInt("receiverPostId"));
+            //Test Processing: test get address variable value
+            System.out.println("This value#" + i + " : " + listInt.get(i++));
+        }
+        return listInt;
+
     }
 }
