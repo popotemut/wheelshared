@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Register
-    Created on : Feb 20, 2018, 3:30:00 PM
-    Author     : OWNER
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

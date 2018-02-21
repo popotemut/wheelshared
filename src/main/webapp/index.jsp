@@ -112,7 +112,7 @@
                                         </div>
                                     </div> 
                                 </div>
-                                <center><button type="button" class="btn btn-link">Do you have any account?</button></center>
+                                <center><button type="button" class="btn btn-link">Do you have any account ?</button></center>
                             </form>
                         </div>
                     </div>
