@@ -28,6 +28,11 @@ public class DonatorPost {
     String address;//เก็บเป็นสตริง
     Timestamp datetime;
 
+    public DonatorPost() {
+    }
+
+    
+    
     public DonatorPost(String topic, int categoryId, String image, String statement, int provinceId, int subDistinctId, int distinctId, String address) throws SQLException, ClassNotFoundException {
         this.name = topic;
         this.categoryId = categoryId;
@@ -48,7 +53,11 @@ public class DonatorPost {
         return name;
     }
 
-    public int getCategoryId() {
+    public Timestamp getDatetime() {
+        return datetime;
+    }
+
+   public int getCategoryId() {
         return categoryId;
     }
 
@@ -81,6 +90,10 @@ public class DonatorPost {
         this.name = name;
     }
 
+    public void setDatetime(Timestamp datetime) {
+        this.datetime = datetime;
+    }
+
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
@@ -110,6 +123,26 @@ public class DonatorPost {
     }
 
     //GETTER FROM DB
+    public Timestamp getDatetimeFromDB(int postId) throws SQLException, ClassNotFoundException {
+        Connection con = ConnectionBuilder.connectionBuilder();
+        Statement s = con.createStatement();
+        ResultSet resultSet = s.executeQuery("select datetime from wheelshareddatabase.DonatorPost where donatorPostId=" + postId + ";");
+        //Test processing position after statement.executeQuery
+        System.out.println("test after statement.executeQuery");
+
+        //Declare address variable to keep the adress in a String data form.
+        Timestamp datetime = null;
+
+        //Use While Loop to get result
+        while (resultSet.next()) {
+            //get address column and keep it in address variable.
+            datetime = resultSet.getTimestamp("datetime");
+            //Test Processing: test get address variable value
+            System.out.println("this name: " + datetime);
+        }
+        return datetime;
+    }
+    
     public String getNameFromDB(int postId) throws SQLException, ClassNotFoundException {
         Connection con = ConnectionBuilder.connectionBuilder();
         Statement s = con.createStatement();
@@ -431,6 +464,7 @@ public class DonatorPost {
             dntp.setSubDistinctId(resultSet.getInt("subDistincId"));
             dntp.setDistinctId(resultSet.getInt("distincId"));
             dntp.setAddress(resultSet.getString("address"));
+            dntp.setDatetime(resultSet.getTimestamp("datetime"));
             System.out.println("ToString Donator Post Id: " + dntp);
         }
         return dntp;

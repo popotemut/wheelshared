@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
@@ -16,6 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DonatorPost;
 
+/**
+ *
+ * @author OWNER
+ */
 public class GoToDonatorNewFeeds extends HttpServlet {
 
     /**
@@ -30,6 +38,7 @@ public class GoToDonatorNewFeeds extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
+        request.getParameter("");
       DonatorPost dntp = null;
         List<Integer> dntpId = dntp.listReverseAllDonatorPostId();
         //เราจะให้โชว์ทีละ 5 อัน/หน้า เรียงจากอันล่าสุด
@@ -163,7 +172,7 @@ public class GoToDonatorNewFeeds extends HttpServlet {
             q++;
         }
 
-        request.setAttribute("dntpId", dntpTop5);
+        request.setAttribute("dntpTop5Id", dntpTop5);
         request.setAttribute("thispage", p);
         request.getRequestDispatcher("/newFeedDonator.jsp").forward(request, response);
     }

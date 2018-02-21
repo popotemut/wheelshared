@@ -156,29 +156,33 @@
                                 <%
                                     //วนลูปตามหมายเลขของ postId
                                     DonatorPost dntp = new DonatorPost();
-                                    List<Integer> listDntp = (List<Integer>)request.getAttribute("dntpTop5Id");
-                                    int i=0;
-                                    while(i<5){
-                                
+                                    List<Integer> listDntp = (List<Integer>) request.getAttribute("dntpTop5Id");
+                                    int i = 0;
+                                    while (i < 5) {
+                                        dntp = dntp.getDonatorPostById(listDntp.get(i));
                                 %>
                                 <li>
-                                    <a href="#">
+                                    <a href="">
                                         <div>
-                                            <strong>John Smith</strong>
+                                            <%--ชื่อ--%>
+                                            <strong><%out.print(dntp.getName());%></strong>
                                             <span class="pull-right text-muted">
-                                                <em>Yesterday</em>
+                                                <%--เวลา--%>
+                                                <em><%out.print(dntp.getDatetime());%></em>
                                             </span>
                                         </div>
-                                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                        <div><%out.print(dntp.getStatement());%></div>
                                     </a>
                                 </li>
 
-                                <%}
+                                <%
+                                        i++;
+                                    }
 
-%>
-                                
-                                
-                                
+                                %>
+
+
+
                                 <li>
                                     <a href="#">
                                         <div>
@@ -311,7 +315,8 @@
                         <ul class="nav" id="side-menu">
                             <li class="sidebar-profile">
                                 <img src="./pic/girl.png" class="text-center" height="128px" width="128px">
-                                <h4 align="center">Kadnit Everdeen</h4>
+                                <%--Name and Lname--%>
+                                <h4 align="center">${sessionScope.User.getName()}&nbsp;&nbsp;${sessionScope.User.getLname()}</h4>
                                 <h5 align="center">(Receiver)</h5>
                             </li>
                             <li>
@@ -336,12 +341,22 @@
                     <div class="create-post">
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><span id="create">+ CREATE POST</span></button>
                     </div>
+                    <div center>
+                        <ol><%  int numberPage = (int) session.getAttribute("numberRecieverPostPage");
+                                for (int k = 1; k <= numberPage; k++) {
+                                    
+                            %>
+                            <li><button type="button" action="GoToReceiverNewFeeds" name="thispage" value="<%out.print(k);%>" class="btn btn-toolbar"><%out.print(k);%></button></li>&nbsp;
+                            <%  }
+                            
+                            %></ol>
+                    </div>
                     <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Kadnit Everdeen</h4>
+                                    <h4 class="modal-title">${sessionScope.User.getName()}&nbsp;&nbsp;${sessionScope.User.getLname()}</h4>
                                 </div>
                                 <div class="modal-body">
                                     <form role="form">

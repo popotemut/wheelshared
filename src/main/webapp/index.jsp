@@ -52,7 +52,7 @@
     <body>
         <%
             //เดี๋ยวต้องส่งไปที่ index ด้วยว่า สถานะการlog in ผ่านหรือไม่ผ่าน
-            if ((!request.getAttribute("loginstatus").equals(null)) & (boolean) request.getAttribute("loginstatus") == false) {
+            if ((!request.getAttribute("loginstatus").equals(null)) & ((boolean) request.getAttribute("loginstatus") == false)) {
         %>
         <div class="text-white" style="background-color: darkgreen;">"Your email or password is invalid."</div>
         
@@ -112,7 +112,7 @@
                                         </div>
                                     </div> 
                                 </div>
-                                <center><button type="button" class="btn btn-link">Do you have any account ?</button></center>
+                                <center><button type="button" class="btn btn-link">Do you have any account?</button></center>
                             </form>
                         </div>
                     </div>

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -109,7 +110,31 @@ public class ReceiverPost {
         this.address = address;
     }
 
+    private void setDatetime(Timestamp datetime) {
+        this.datetime = datetime;
+    }
+    
     //GETTER FROM DB
+     public Timestamp getDatetimeFromDB(int postId) throws SQLException, ClassNotFoundException {
+        Connection con = ConnectionBuilder.connectionBuilder();
+        Statement s = con.createStatement();
+        ResultSet resultSet = s.executeQuery("select datetime from wheelshareddatabase.ReceiverPost where receiverPostId=" + postId + ";");
+        //Test processing position after statement.executeQuery
+        System.out.println("test after statement.executeQuery");
+
+        //Declare address variable to keep the adress in a String data form.
+        Timestamp datetime = null;
+
+        //Use While Loop to get result
+        while (resultSet.next()) {
+            //get address column and keep it in address variable.
+            datetime = resultSet.getTimestamp("datetime");
+            //Test Processing: test get address variable value
+            System.out.println("this name: " + datetime);
+        }
+        return datetime;
+    }
+    
     public String getNameFromDB(int postId) throws SQLException, ClassNotFoundException {
         Connection con = ConnectionBuilder.connectionBuilder();
         Statement s = con.createStatement();
@@ -390,24 +415,30 @@ public class ReceiverPost {
         return result;
     }
 
-    public List<Integer> listReverseAllReceiverPostId() throws SQLException, ClassNotFoundException {
-        List<Integer> listInt = null;
+    public ArrayList<Integer> listReverseAllReceiverPostId() throws SQLException, ClassNotFoundException {
+        ArrayList<Integer> listInt = null;
+        listInt.add(0);
+        listInt.add(1);
+        listInt.add(2);
+        listInt.add(3);
+        listInt.add(4);
+        listInt.add(5);
         //SQL to query that Every ReceiverPostId order by lastest date
-        Connection con = ConnectionBuilder.connectionBuilder();
-        Statement s = con.createStatement();
-        ResultSet resultSet = s.executeQuery("select receiverPostId from wheelshareddatabase.ReceiverPost order by datetime DESC;");
-
-        //Test processing position after statement.executeQuery
-        System.out.println("test after statement.executeQuery");
-
-        //Use While Loop to get result
-        int i = 0;
-        while (resultSet.next()) {
-            //get address column and keep it in address variable.
-            listInt.add(resultSet.getInt("receiverPostId"));
-            //Test Processing: test get address variable value
-            System.out.println("This value#" + i + " : " + listInt.get(i++));
-        }
+//        Connection con = ConnectionBuilder.connectionBuilder();
+//        Statement s = con.createStatement();
+//        ResultSet resultSet = s.executeQuery("select receiverPostId from wheelshareddatabase.ReceiverPost order by datetime DESC;");
+//
+//        //Test processing position after statement.executeQuery
+//        System.out.println("test after statement.executeQuery");
+//
+//        //Use While Loop to get result
+//        int i = 0;
+//        while (resultSet.next()) {
+//            //get address column and keep it in address variable.
+//            listInt.add(resultSet.getInt("receiverPostId"));
+//            //Test Processing: test get address variable value
+//            System.out.println("This value#" + i + " : " + listInt.get(i++));
+//        }
         return listInt;
     }
 
@@ -431,6 +462,7 @@ public class ReceiverPost {
             rcvp.setSubDistinctId(resultSet.getInt("distincId"));
             rcvp.setDistinctId(resultSet.getInt("distincId"));
             rcvp.setAddress(resultSet.getString("address"));
+            rcvp.setDatetime(resultSet.getTimestamp("datetime"));
             System.out.println("ToString Receiver Post Id: " + rcvp);
         }
         return rcvp;
@@ -458,4 +490,6 @@ public class ReceiverPost {
         return listInt;
 
     }
+
+    
 }
