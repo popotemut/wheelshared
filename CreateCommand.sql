@@ -1,120 +1,215 @@
 Create Table Category(
-	categoryId int,
+	categoryId int AUTO_INCREMENT,
 	categoryName varchar(255) NOT NULL,
 	imageAdress varchar(255) NOT NULL,
 	PRIMARY KEY (categoryId)
 );
-Create Table RecieverPost(
-	receiverPostId int NOT NULL,
-	receiverStatement varchar(255) NOT NULL,
-	categoryId int NOT NULL,
-	receiverId int NOT NULL,
-	dateTime dateTime NOT NULL,
-	provinceId int NOT NULL,
-	subdistrictId int NOT NULL,
-	districtId int NOT NULL,
-	PRIMARY KEY (receiverPostId),	
-	FOREIGN KEY (categoryId) REFERENCES userId(categoryId),
-	FOREIGN KEY (receiverId) REFERENCES userId (receiverId)
-);
-Create Table User(
-	userId int NOT NULL,
-	name  varchar(255) NOT NULL,
-	lname varchar(255) NOT NULL,
-	address varchar(255) NOT NULL,
-	tel varchar(255) NOT NULL,
-	email varchar(255) NOT NULL,
-	password varchar(255) NOT NULL,
-	online Boolean NOT NULL,
-	provinceId int,
-	subdistrictId int,
-	districtId int NOT NULL, 
-	Zipcode varchar(255) NOT NULL,
-	PRIMARY KEY (userId),
-	FOREIGN KEY (provinceId) REFERENCES ReceiverPost (provinceId),
-	FOREIGN KEY (subdistrictId) REFERENCES ReceiverPost (subdistrictId)
-);
 Create Table Province(
-	provinceId int NOT NULL,
+	provinceId int AUTO_INCREMENT NOT NULL,
 	privinceName varchar(255) NOT NULL,
 	PRIMARY KEY (provinceId)
 
 );
-
 Create Table District(
-	districtId int NOT NULL,
+	districtId int AUTO_INCREMENT NOT NULL,
 	districtName varchar(255) NOT NULL,
 	provinceId int NOT NULL,
 	PRIMARY KEY (districtId),
 	FOREIGN KEY (provinceId) REFERENCE Province (provinceId)
-
 );
 Create Table Sub_District(
-	subdistrictId int NOT NULL,
+	
+	subdistrictId int AUTO_INCREMENT NOT NULL,
+	
 	sudistrictName varchar(255) NOT NULL,
+	
 	districtId int NOT NULL,
+	
 	PRIMARY KEY (subdistrictId),
-	FOREIGN KEY (districtId ) REFERENCE District (districtId)	
+	
+	FOREIGN KEY (districtId ) REFERENCEs District (districtId)	
+
 
 );
 
+Create Table User(
+	
+userId int AUTO_INCREMENT NOT NULL,
+	
+name  varchar(255) NOT NULL,
+	
+lname varchar(255) NOT NULL,
+	
+address varchar(255) NOT NULL,
+	
+tel varchar(255) NOT 
+email varchar(255) NOT NULL,
+	
+password varchar(255) NOT NULL,
+	
+online Boolean NOT NULL,
+	
+provinceId int,
+	subdistrictId int,
+	
+districtId int NOT NULL, 
+	
+zipcode varchar(255) NOT NULL,
+	
+PRIMARY KEY (userId),
+	
+FOREIGN KEY (provinceId) 
+REFERENCES Province (provinceId),
+	
+FOREIGN KEY (subdistrictId) R
+EFERENCES Sub_District(subdistrictId)
+
+);
+
+Create Table ReceiverPost(
+	
+receiverPostId int AUTO_INCREMENT NOT NULL,
+	
+statement varchar(255) NOT NULL,
+	
+categoryId int NOT NULL,
+	
+receiverId int NOT NULL,
+	
+dateTime dateTime NOT 
+provinceId int NOT NULL,
+	
+subdistrictId int NOT NULL,
+	
+districtId int NOT 
+PRIMARY KEY (receiverPostId),	
+	
+FOREIGN KEY (categoryId)
+ REFERENCES Category(categoryId),
+	
+FOREIGN KEY (receiverId) REFERENCES User(userId)
+
+);
 
 Create Table DonatorPost (
-	donateId int NOT NULL,
-	rdonateStatement varchar(255) NOT NULL,
-	categoryId int NOT NULL,
-	donatorId int NOT NULL,
-	dateTime dateTime NOT NULL,
-	provinceId int NOT NULL,
-	subdistrictId int NOT NULL,
-	districtId int NOT NULL,
-	PRIMARY KEY (donateId),
-	FOREIGN KEY (categoryId) REFERENCES Category (categoryId),
-	FOREIGN KEY (donatorId) REFERENCES user (userId),
-	FOREIGN KEY (provinceId) REFERENCES Province (provinceId),
-	FOREIGN KEY (subdistrictId) REFERENCES District (subdistrictId),
-);
-
-Create Table Deal (
-	dealID int NOT NULL,
-	recieverId int NOT NULL,
-	donatorId int NOT NULL,
-	dealStatus boolean NOT NULL,
-	trackingStatusRecieve boolean NOT NULL,
-	recieverPostId int NOT NULL,
-	donatorPostId int NOT NULL,
-	trackingStatusDonate boolean NOT NULL,
-	PRIMARY KEY (dealId),
-	FOREIGN KEY (recieverId) REFERENCES Category (user),
-	FOREIGN KEY (donatorId) REFERENCES Category (user),
-	FOREIGN KEY (recieverPostId) REFERENCES RecieverPost (recieverId),
-	FOREIGN KEY (donatorPostId) REFERENCES DonatorPost (donatorId),
-);
-
-Create Table Deal (
-	chatMesId int NOT NULL,
-	chatId int NOT NULL,
-	value varchar(255) NOT NULL,
-	time DateTime NOT NULL,
-	picAddress varchar(255) NOT NULL,
-	senderId int NOT NULL,
-	statusRead boolean NOT NULL,
-	PRIMARY KEY (chatMesId),
-	FOREIGN KEY (chatId) REFERENCES Chat (chatId),
-);
-
-Create Table chat (
-	chatId int NOT NULL,
-	chatName varchar(255),
-	recieverId int NOT NULL,
-	donatorId int NOT NULL,
-	recieverPostId int NOT NULL,
-	donatorPostId int NOT NULL,
-	dealId int NOT NULL,
-	PRIMARY KEY (chatId),
-	FOREIGN KEY (recieverId) REFERENCES User (recieverId),
-	FOREIGN KEY (donatorId) REFERENCES User (donatorId),
-	FOREIGN KEY (recieverPostId) REFERENCES RecievePost (recieverId),
-	FOREIGN KEY (donatorPostId) REFERENCES DonatorPost (donateId),
 	
+donateId int AUTO_INCREMENT NOT NULL,
+	
+donateStatement varchar(255) NOT NULL,
+	
+categoryId int NOT NULL,
+	
+donatorId int NOT NULL,
+	
+dateTime dateTime NOT NULL,
+	
+provinceId int NOT NULL,
+	
+subdistrictId int NOT 
+districtId int NOT NULL,
+	
+PRIMARY KEY (donateId),
+	
+FOREIGN KEY (categoryId) 
+REFERENCES Category (categoryId),
+	
+FOREIGN KEY (donatorId) 
+REFERENCES User (userId),
+	
+FOREIGN KEY (provinceId) 
+REFERENCES Province (provinceId),
+    
+FOREIGN KEY (districtId) 
+REFERENCES District (districtId),
+	
+FOREIGN KEY (subdistrictId) 
+REFERENCES Sub_District (subdistrictId)
+
+);
+
+Create Table Deal (
+	
+dealID int AUTO_INCREMENT NOT NULL,
+	
+recieverId int NOT NULL,
+	
+donatorId int NOT NULL,
+	
+dealStatus boolean NOT NULL,
+	
+trackingStatusRecieve boolean NOT NULL,
+	
+recieverPostId int NOT NULL,
+	
+donatorPostId int NOT 
+trackingStatusDonate boolean NOT NULL,
+	
+PRIMARY KEY (dealId),
+	
+FOREIGN KEY (recieverId) 
+REFERENCES User (userId),
+	
+FOREIGN KEY (donatorId) 
+REFERENCES User (userId),
+	
+FOREIGN KEY (recieverPostId) 
+REFERENCES ReceiverPost (receiverId),
+	
+FOREIGN KEY (donatorPostId) 
+REFERENCES DonatorPost (donatorId)
+);
+
+Create Table Chat (
+	
+chatId int AUTO_INCREMENT NOT NULL,
+	
+chatName varchar(255),
+	
+recieverId int NOT NULL,
+	
+donatorId int NOT NULL,
+	
+recieverPostId int NOT NULL,
+	
+donatorPostId int NOT NULL,
+	
+dealId int NOT NULL,
+	
+PRIMARY KEY (chatId),
+	
+FOREIGN KEY (recieverId) 
+REFERENCES User (userId),
+	
+FOREIGN KEY (donatorId) 
+REFERENCES User (userId),
+	
+FOREIGN KEY (recieverPostId) 
+REFERENCES ReceiverPost (receiverId),
+	
+FOREIGN KEY (donatorPostId) 
+REFERENCES DonatorPost (donatorId)
+
+);
+
+Create Table ChatMessages (
+	
+chatMesId int AUTO_INCREMENT NOT NULL,
+	
+chatId int NOT NULL,
+	
+value varchar(255) NOT NULL,
+	
+time DateTime NOT NULL,
+	
+picAddress varchar(255) NOT NULL,
+	
+senderId int NOT NULL,
+	
+statusRead boolean NOT NULL,
+	
+PRIMARY KEY (chatMesId),
+	
+FOREIGN KEY (chatId) 
+REFERENCES Chat (chatId)
+
 );
